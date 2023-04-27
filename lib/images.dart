@@ -14,9 +14,8 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
          child:Image.asset(
-             'assets/images/IMG_7947.jpeg',
-                 width: 300,
-                 height: 600,
+             'assets/images/IMG_7947.jpg',
+
          ),
           ),
         ),
