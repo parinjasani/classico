@@ -79,7 +79,8 @@ class WrapWidget extends StatelessWidget {
                 ),
               ],
             ),
-          )),
+          )
+      ),
     );
   }
 }
