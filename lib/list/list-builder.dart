@@ -7,12 +7,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home:MyHomepage(),
+      home:MyHomePage(),
     );
   }
 }
-class MyHomepage extends StatelessWidget {
-   MyHomepage({Key? key}) : super(key: key);
+class MyHomePage extends StatelessWidget {
+   MyHomePage({Key? key}) : super(key: key);
    var colorList = [
      Color(0XFFC0CA33),
      Colors.amber.shade900,

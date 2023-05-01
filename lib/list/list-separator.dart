@@ -8,12 +8,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      home:Myhomepage(),
+      home:MyhomePAge(),
     );
   }
 }
-class Myhomepage extends StatelessWidget {
-   Myhomepage({Key? key}) : super(key: key);
+class MyhomePAge extends StatelessWidget {
+   MyhomePAge({Key? key}) : super(key: key);
   var colorList = [
     Color(0XFFC0CA33),
     Colors.amber.shade900,
