@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
               // ),
              CircleAvatar(
                backgroundImage: NetworkImage(
-                 'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'
+                 'https://pixabay.com/photos/tree-sunset-clouds-sky-silhouette-736885/',
                ),
                ),
             ],
