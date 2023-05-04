@@ -45,7 +45,8 @@ class _ListpraticalState extends State<Listpratical> {
               onChanged: (value) {
                 setState(() {
                   userlist[index].isChecked=value!;
-                });
+                }
+                );
               },
             ),
             title: Text(userlist[index].name),
