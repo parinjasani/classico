@@ -61,11 +61,11 @@ class MyHompage extends StatelessWidget{
             );
            },
            separatorBuilder: (context,index)
-    {
-      return SizedBox(
-        height: 2.5,
-      );
-    },
+              {
+                return SizedBox(
+                  height: 2.5,
+                );
+              },
    );
   }
 
