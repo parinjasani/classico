@@ -1,19 +1,19 @@
 
+import 'package:classico/navigator-object/user.dart';
 import 'package:flutter/material.dart';
 
-class Routes3 extends StatefulWidget {
-  String address2 ;
+class ThirdRoute extends StatefulWidget {
+   User user;
 
-   Routes3({required this.address2});
+   ThirdRoute(this.user);
 
   @override
-  State<Routes3> createState() => _Routes3State(address2);
+  State<ThirdRoute> createState() => _ThirdRouteState(user);
 }
 
-class _Routes3State extends State<Routes3> {
-  String address2;
-
-  _Routes3State(this.address2);
+class _ThirdRouteState extends State<ThirdRoute> {
+  User user;
+  _ThirdRouteState(this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _Routes3State extends State<Routes3> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('''$address2
+              Text('''${user.address}
               '''),
               ElevatedButton(onPressed: () {
                 Navigator.pop(context);
@@ -40,3 +40,5 @@ class _Routes3State extends State<Routes3> {
     );
   }
 }
+
+
