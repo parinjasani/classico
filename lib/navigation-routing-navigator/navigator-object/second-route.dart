@@ -1,6 +1,6 @@
 
-import 'package:classico/navigator-object/third-route.dart';
-import 'package:classico/navigator-object/user.dart';
+import 'package:classico/navigation-routing-navigator/navigator-object/third-route.dart';
+import 'package:classico/navigation-routing-navigator/navigator-object/user.dart';
 import 'package:flutter/material.dart';
 
 class SecondRoutes extends StatelessWidget {
@@ -40,9 +40,10 @@ class SecondRoutes extends StatelessWidget {
               ),
               ElevatedButton(onPressed: () {
                 String address = _address.text.toString().trim();
-                var user2=User(name: user.name, email: user.email, age: user.age,address: address);
+              //  var user2=User(name: user.name, email: user.email, age: user.age,address: address);
+                user.address = address;
                 Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                ThirdRoute(user2),));
+                ThirdRoute(user),));
               }, child: Text('Third route'))
             ],
           ),

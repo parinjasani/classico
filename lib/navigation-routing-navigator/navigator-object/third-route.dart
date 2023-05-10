@@ -1,5 +1,5 @@
 
-import 'package:classico/navigator-object/user.dart';
+import 'package:classico/navigation-routing-navigator/navigator-object/user.dart';
 import 'package:flutter/material.dart';
 
 class ThirdRoute extends StatefulWidget {

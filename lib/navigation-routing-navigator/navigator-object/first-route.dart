@@ -1,13 +1,15 @@
-import 'package:classico/navigation-routing-navigator/routes2.dart';
+
+import 'package:classico/navigation-routing-navigator/navigator-object/second-route.dart';
+import 'package:classico/navigation-routing-navigator/navigator-object/user.dart';
 import 'package:flutter/material.dart';
 
-class Routes1 extends StatelessWidget {
-  Routes1({Key? key}) : super(key: key);
-  final _name = new TextEditingController();
-  final _age = new TextEditingController();
-  final _email = new TextEditingController();
+class FirstRoute extends StatelessWidget {
+   FirstRoute({Key? key}) : super(key: key);
+   final _name = new TextEditingController();
+   final _age = new TextEditingController();
+   final _email = new TextEditingController();
 
-  //final _address=new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,14 +50,11 @@ class Routes1 extends StatelessWidget {
                     int age = (_age.text.isEmpty)
                         ? 0
                         : int.parse(_age.text.toString().trim());
+                    var user=User(name: name, email: email, age: age);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Routes2(
-                            name2: name,
-                            age2: age,
-                            email2: email,
-                          ),
+                          builder: (context) =>SecondRoutes(user),
                         ));
                   },
                   child: Text('second Route'))

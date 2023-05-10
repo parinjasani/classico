@@ -1,5 +1,7 @@
-import 'package:classico/navigation-routing-navigator/routes1.dart';
+
 import 'package:flutter/material.dart';
+
+import 'first-route.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: Routes1()
+      home: FirstRoute()
     );
   }
 }
