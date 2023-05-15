@@ -11,17 +11,13 @@ class FourthScreen extends StatefulWidget {
 }
 
 class _FourthScreenState extends State<FourthScreen> {
-  var NotesList=<Notes>[];
+ Notes? N;
   var titleCOntroller=TextEditingController();
   var notesCOntroller=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    void insert(Notes notes,BuildContext context){
-      setState(() {
-        NotesList.add(notes);
-      });
-    }
+
     return Scaffold(
       appBar: AppBar(title: Text("NOTES")),
       body: Container(
@@ -75,9 +71,8 @@ class _FourthScreenState extends State<FourthScreen> {
                   onPressed: () {
                     String title=titleCOntroller.text.toString().trim();
                     String note= notesCOntroller.text.toString().trim();
-                    var N=Notes(title: title, note: note);
-                    insert(N, context);
-                    Navigator.pop(context,NotesList);
+                    var n=Notes(title: title, note: note);
+                    Navigator.pop(context,n);
                   },
                   child: Text("SAVE",style: TextStyle(fontSize: 18),))
             ],

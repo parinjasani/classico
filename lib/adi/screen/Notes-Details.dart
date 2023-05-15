@@ -2,5 +2,5 @@ class Notes{
   String title;
   String note;
 
-  Notes({required this.title, required this.note});
+  Notes({ this.title="", this.note=""});
 }
