@@ -22,14 +22,13 @@ class _UserListScreenState extends State<UserListScreen> {
 
   void updatePerson(Person person, BuildContext context) {
     setState(() {
-
       var index = personList.indexWhere((element) => element.id == person.id);
       personList[index] = person;
       Navigator.pop(context);
     });
   }
 
-  void deletePerson(Person person, BuildContext context){
+  void deletePerson(Person person, BuildContext context) {
     setState(() {
       personList.removeWhere((element) => element.id == person.id);
     });
@@ -48,11 +47,23 @@ class _UserListScreenState extends State<UserListScreen> {
             onTap: () {
               showBottomSheetDialog(context, personList[index]);
             },
-            trailing: IconButton(
-              onPressed: () {
-                deletePerson(personList[index], context);
+            trailing: PopupMenuButton(
+              onSelected: (value) {
+                switch (value) {
+                  case 1:
+                    deletePerson(personList[index], context);
+                    break;
+                  case 2:
+                    showAlertdialog();
+                    break;
+                }
               },
-              icon: Icon(Icons.delete),
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(value: 1, child: Text("Remove")),
+                  PopupMenuItem(value: 2, child: Text("Logout")),
+                ];
+              },
             ),
             leading: CircleAvatar(
               radius: 24,
@@ -117,12 +128,11 @@ class _UserListScreenState extends State<UserListScreen> {
                     int id = person == null ? Random().nextInt(999) : person.id;
                     var p = Person(id: id, name: name, email: email);
 
-                    if(person == null){
+                    if (person == null) {
                       insertPerson(p, context);
-                    }else{
+                    } else {
                       updatePerson(p, context);
                     }
-
                   },
                   child: Text(person == null ? 'Insert' : 'Update'),
                 )
@@ -131,5 +141,26 @@ class _UserListScreenState extends State<UserListScreen> {
           );
         },
         isScrollControlled: true);
+  }
+
+  void showAlertdialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Logout"),
+          content: Text("Are you sure waant to log out"),
+          actions: [
+            OutlinedButton(
+                onPressed: () => Navigator.pop(context), child: Text("Cancle")),
+            SizedBox(
+              width: 10,
+            ),
+            OutlinedButton(
+                onPressed: () => Navigator.pop(context), child: Text("Logout"))
+          ],
+        );
+      },
+    );
   }
 }
