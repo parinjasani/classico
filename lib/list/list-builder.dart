@@ -45,6 +45,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body:ListView.builder(
         itemCount: colorList.length,
+        //scrollDirection: Axis.horizontal,
         itemBuilder: (context,index)
         {
           return Container(

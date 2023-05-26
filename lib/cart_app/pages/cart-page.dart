@@ -80,7 +80,7 @@ class _CartPageState extends State<CartPage> {
                           SizedBox(
                             height: 4,
                           ),
-                          Text('\$'+value.calculateTotal(),
+                          Text('\$' + value.calculateTotal(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -89,17 +89,14 @@ class _CartPageState extends State<CartPage> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green.shade100),
-                          borderRadius: BorderRadius.circular(12)
-                        ),
+                            border: Border.all(color: Colors.green.shade100),
+                            borderRadius: BorderRadius.circular(12)),
                         padding: EdgeInsets.all(12),
                         child: Row(
                           children: [
                             Text(
                               'Pay now',
-                              style: TextStyle(
-                                color: Colors.white
-                              ),
+                              style: TextStyle(color: Colors.white),
                             ),
                             Icon(
                               Icons.arrow_forward_ios,
