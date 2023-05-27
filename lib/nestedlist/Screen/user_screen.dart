@@ -1,3 +1,4 @@
+import 'package:classico/nestedlist/Screen/viewall.dart';
 import 'package:classico/nestedlist/model/product.dart';
 import 'package:flutter/material.dart';
 
@@ -9,24 +10,31 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  var categorylist=<Category>[];
-  var productList=<Product>[];
+  var categorylist = <Category>[];
+  var productList = <Product>[];
+
   @override
   void initState() {
     // TODO: implement initState
-    productList.add(Product(productname: "banana", image: "assets/images/banana.jpg"));
-    productList.add(Product(productname: "grapes", image: "assets/images/grapes.jpg"));
-    productList.add(Product(productname: "guava", image: "assets/images/guava.jpg"));
-    productList.add(Product(productname: "water bottle", image: "assets/images/water_bottle.jpg"));
-    productList.add(Product(productname: "banana", image: "assets/images/banana.jpg"));
-    categorylist.add(Category(title: "top rated",productlist: productList));
-    categorylist.add(Category(title: "most view",productlist: productList));
-    categorylist.add(Category(title: "top 10",productlist: productList));
-    categorylist.add(Category(title: "new launce",productlist: productList));
-    categorylist.add(Category(title: "upcoming",productlist: productList));
+    productList
+        .add(Product(productname: "banana", image: "assets/images/banana.jpg"));
+    productList
+        .add(Product(productname: "grapes", image: "assets/images/grapes.jpg"));
+    productList
+        .add(Product(productname: "guava", image: "assets/images/guava.jpg"));
+    productList.add(Product(
+        productname: "water bottle", image: "assets/images/water_bottle.jpg"));
+    productList
+        .add(Product(productname: "banana", image: "assets/images/banana.jpg"));
+    categorylist.add(Category(title: "Top rated", productlist: productList));
+    categorylist.add(Category(title: "Most view", productlist: productList));
+    categorylist.add(Category(title: "Top 10", productlist: productList));
+    categorylist.add(Category(title: "New launce", productlist: productList));
+    categorylist.add(Category(title: "Upcoming", productlist: productList));
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,12 +48,33 @@ class _UserScreenState extends State<UserScreen> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("${categorylist[index].title}",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20
-                ),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding:EdgeInsets.only(left:8.0),
+                      child: Text(
+                        "${categorylist[index].title}",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAll(category: categorylist[index]),));
+                        },
+                        child: Text(
+                          "View all",
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16,decoration: TextDecoration.underline),
+
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 SizedBox(
-                  height: (MediaQuery.of(context).size.height)*0.23,
+                  height: (MediaQuery.of(context).size.height) * 0.23,
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
                     padding: EdgeInsets.all(12),
@@ -57,12 +86,23 @@ class _UserScreenState extends State<UserScreen> {
                       return Padding(
                         padding: EdgeInsets.only(right: 8.0),
                         child: Container(
-                          color: Colors.green[100],
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.green[100]
+                          ),
                           child: Column(
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(15),
-                                child: Image.asset("${productList[index].image}",height:100,),
+                                child: Container(
+                                    child: Image.asset(
+                                  "${productList[index].image}",
+                                  height: 100,
+                                      width: 150,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(23)
+                                ),),
                               ),
                               Text("${productList[index].productname}"),
                             ],
@@ -72,14 +112,13 @@ class _UserScreenState extends State<UserScreen> {
                     },
                   ),
                 ),
-
               ],
             );
           },
           separatorBuilder: (context, index) {
             return Container(
               height: 5,
-             // width: 5,
+              // width: 5,
             );
           },
         ));
