@@ -1,3 +1,4 @@
+import 'package:classico/nestedlist/Screen/inspect_screen.dart';
 import 'package:classico/nestedlist/Screen/viewall.dart';
 import 'package:classico/nestedlist/model/product.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class UserScreen extends StatefulWidget {
 class _UserScreenState extends State<UserScreen> {
   var categorylist = <Category>[];
   var productList = <Product>[];
+  var productList2 = <Product>[];
 
   @override
   void initState() {
@@ -26,8 +28,10 @@ class _UserScreenState extends State<UserScreen> {
         productname: "water bottle", image: "assets/images/water_bottle.jpg"));
     productList
         .add(Product(productname: "banana", image: "assets/images/banana.jpg"));
+    productList2.add(Product(
+        productname: "water bottle", image: "assets/images/water_bottle.jpg"));
     categorylist.add(Category(title: "Top rated", productlist: productList));
-    categorylist.add(Category(title: "Most view", productlist: productList));
+    categorylist.add(Category(title: "Most view", productlist: productList2));
     categorylist.add(Category(title: "Top 10", productlist: productList));
     categorylist.add(Category(title: "New launce", productlist: productList));
     categorylist.add(Category(title: "Upcoming", productlist: productList));
@@ -44,7 +48,7 @@ class _UserScreenState extends State<UserScreen> {
         body: ListView.separated(
           //padding: EdgeInsets.all(12),
           itemCount: categorylist.length,
-          itemBuilder: (context, index) {
+          itemBuilder: (context, index12) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -54,7 +58,7 @@ class _UserScreenState extends State<UserScreen> {
                     Padding(
                       padding:EdgeInsets.only(left:8.0),
                       child: Text(
-                        "${categorylist[index].title}",
+                        "${categorylist[index12].title}",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
@@ -62,7 +66,7 @@ class _UserScreenState extends State<UserScreen> {
                       padding: EdgeInsets.only(right: 8.0),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAll(category: categorylist[index]),));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAll(category: categorylist[index12]),));
                         },
                         child: Text(
                           "View all",
@@ -81,31 +85,36 @@ class _UserScreenState extends State<UserScreen> {
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: productList.length,
+                    itemCount: categorylist[index12].productlist.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.green[100]
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Container(
-                                    child: Image.asset(
-                                  "${productList[index].image}",
-                                  height: 100,
-                                      width: 150,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => InspectScreeen(categorylist[index12].productlist[index]),));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.green[100]
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(15),
+                                  child: Container(
+                                      child: Image.asset(
+                                    "${categorylist[index12].productlist[index].image}",
+                                    height: 100,
+                                        width: 150,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(23)
+                                  ),),
                                 ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(23)
-                                ),),
-                              ),
-                              Text("${productList[index].productname}"),
-                            ],
+                                Text("${categorylist[index12].productlist[index].productname}"),
+                              ],
+                            ),
                           ),
                         ),
                       );

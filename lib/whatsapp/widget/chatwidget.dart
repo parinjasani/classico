@@ -20,8 +20,7 @@ class _ChatWidgetState extends State<ChatWidget> {
         name: "Adibapu", msg: "Masti kari levani ne?", time: "6:18 PM"));
     userlist.add(Download(
         name: "Pujan", msg: "kadak shabdo ma kai devanu....", time: "9:40 AM"));
-    userlist
-        .add(Download(name: "Megh", msg: "Saru..", time: "5:30 PM"));
+    userlist.add(Download(name: "Megh", msg: "Saru..", time: "5:30 PM"));
   }
 
   @override
@@ -29,21 +28,37 @@ class _ChatWidgetState extends State<ChatWidget> {
     return ListView.builder(
       itemCount: userlist.length,
       itemBuilder: (context, index) => ListTile(
-       // minVerticalPadding: 40,
+        // minVerticalPadding: 40,
         leading: CircleAvatar(
           backgroundColor: Color(0xFF075E55),
           radius: 28,
           child: Text(
-              userlist[index].name.isNotEmpty ? userlist[index].name[0] : "X"),
+            userlist[index].name.isNotEmpty ? userlist[index].name[0] : "X",
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
         ),
         trailing: Container(child: Text(userlist[index].time)),
-        title: Text(userlist[index].name),
-        subtitle:Row(
+        title: Text(
+          userlist[index].name,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Icon(Icons.mark_chat_read_rounded,size: 18,),
-            SizedBox(width: 10,),
-            Expanded(child: Text(userlist[index].msg,maxLines:1,overflow: TextOverflow.ellipsis,)),
+            Icon(
+              Icons.mark_chat_read_rounded,
+              size: 18,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                child: Text(
+              userlist[index].msg,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            )),
           ],
         ),
       ),

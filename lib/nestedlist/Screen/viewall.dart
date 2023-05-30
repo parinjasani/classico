@@ -1,3 +1,4 @@
+import 'package:classico/nestedlist/Screen/inspect_screen.dart';
 import 'package:classico/nestedlist/model/category.dart';
 import 'package:classico/nestedlist/model/product.dart';
 import 'package:flutter/material.dart';
@@ -22,26 +23,31 @@ class ViewAll extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.all(8),
-            child: Container(
-              alignment: Alignment.center,
-              height: 180,
-              width: 100,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.green[100]),
-              child: Column(
-                children: [
-                  Container(
-                    child: Image.asset(
-                      "${category.productlist[index].image}",
-                      height: 150,
-                      width: 150,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => InspectScreeen(category.productlist[index]),));
+              },
+              child: Container(
+                alignment: Alignment.center,
+                height: 180,
+                width: 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.green[100]),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        "${category.productlist[index].image}",
+                        height: 150,
+                        width: 150,
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(23)),
                     ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(23)),
-                  ),
-                  Text("${category.productlist[index].productname}"),
-                ],
+                    Text("${category.productlist[index].productname}"),
+                  ],
+                ),
               ),
             ),
           );
