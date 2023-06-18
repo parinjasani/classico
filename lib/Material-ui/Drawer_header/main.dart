@@ -1,3 +1,7 @@
+import 'package:classico/Material-ui/Drawer_header/screen/home.dart';
+import 'package:classico/Material-ui/Drawer_header/screen/myBucket.dart';
+import 'package:classico/Material-ui/Drawer_header/screen/order.dart';
+import 'package:classico/Material-ui/Drawer_header/screen/profile.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -19,7 +23,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var selectindex;
+  var selectindex=0;
+  var BodyList=<  Widget>[Home(),Profile(),MyBucket(),Order()];
   void menuClicked(int i) {
     setState(() {
       selectindex=i;
@@ -32,11 +37,12 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.purple,
         title: Text('Navigation Drawer-header'),
       ),
-      body: Center(
-        child: Container(
-          child: Text('Hello World'),
-        ),
-      ),
+      // body: Center(
+      //   child: Container(
+      //     child: Text('Hello World'),
+      //   ),
+      // ),
+      body: BodyList[selectindex],
       drawer: Drawer(
         child: Column(
           children: [
@@ -112,6 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onTap: () {
               menuClicked(0);
+              Home();
+              Navigator.pop(context);
             },
             selectedColor: Colors.white,
             selectedTileColor: Colors.purpleAccent.shade100,
@@ -136,6 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
             selected: selectindex==1,
             onTap: () {
               menuClicked(1);
+              Profile();
+              Navigator.pop(context);
             },
             leading: Icon(
               Icons.person,
@@ -158,6 +168,8 @@ class _MyHomePageState extends State<MyHomePage> {
             selected: selectindex==2,
             onTap: () {
               menuClicked(2);
+              MyBucket();
+              Navigator.pop(context);
             },
             leading: Icon(
               Icons.card_travel,
@@ -180,6 +192,8 @@ class _MyHomePageState extends State<MyHomePage> {
             selected: selectindex==3,
             onTap: () {
               menuClicked(3);
+              Order();
+              Navigator.pop(context);
             },
             leading: Icon(
               Icons.check_box,
