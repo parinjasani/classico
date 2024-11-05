@@ -65,15 +65,10 @@ class _DockState<T> extends State<Dock<T>> {
   late List<T> _items = widget.items.toList();
 
   int? _draggingIndex;
-  bool _isOutsideContainer = false;
-  final GlobalKey _containerKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      key: _containerKey,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
+    return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: Colors.black12,
@@ -102,39 +97,16 @@ class _DockState<T> extends State<Dock<T>> {
       onDragStarted: () {
         setState(() {
           _draggingIndex = index;
-          _isOutsideContainer = false; // Reset state when dragging starts
         });
       },
       onDraggableCanceled: (velocity, offset) {
         setState(() {
           _draggingIndex = null;
-          _isOutsideContainer = false;
         });
-      },
-      onDragUpdate: (details) {
-        // Check if the drag position is outside the container
-        final containerBox = _containerKey.currentContext?.findRenderObject() as RenderBox?;
-        if (containerBox != null) {
-          final containerPosition = containerBox.localToGlobal(Offset.zero);
-          final containerSize = containerBox.size;
-          final dragPosition = details.globalPosition;
-
-          final isOutside = !(dragPosition.dx >= containerPosition.dx &&
-              dragPosition.dx <= containerPosition.dx + containerSize.width &&
-              dragPosition.dy >= containerPosition.dy &&
-              dragPosition.dy <= containerPosition.dy + containerSize.height);
-
-          if (isOutside != _isOutsideContainer) {
-            setState(() {
-              _isOutsideContainer = isOutside;
-            });
-          }
-        }
       },
       onDragEnd: (details) {
         setState(() {
           _draggingIndex = null;
-          _isOutsideContainer = false;
         });
       },
       child: DragTarget<int>(
