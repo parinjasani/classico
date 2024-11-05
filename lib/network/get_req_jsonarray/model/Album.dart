@@ -7,7 +7,6 @@ class Album {
       this.userId, 
       this.id, 
       this.title,});
-
   Album.fromJson(dynamic json) {
     userId = json['userId'];
     id = json['id'];
